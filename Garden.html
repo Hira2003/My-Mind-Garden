@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#f7f7f9">
+    <meta name="description" content="My Garden - Visual Sudoku">
+    <title>Visual Sudoku — My Garden</title>
+    <link rel="stylesheet" href="css/Garden.css">
+</head>
+
+<body>
+
+    <main class="garden-app">
+
+        <header class="garden-header">
+            <div>
+                <p class="eyebrow">VISUAL SUDOKU</p>
+                <h1>My Garden 🌿</h1>
+                <p class="subtitle">Grow your little garden with the coins you earn from Sudoku.</p>
+            </div>
+
+            <div class="garden-header-actions">
+                <div class="coin-box">
+                    <span>🪙</span>
+                    <span>Coins:</span>
+                    <strong id="coinsDisplay">00</strong>
+                </div>
+
+                <button id="backButton" class="secondary-button" type="button">
+                    ← Menu
+                </button>
+            </div>
+        </header>
+
+        <section class="garden-toolbar">
+            <div class="garden-stats">
+                <span>🌱 Levels won: <strong id="levelsWonDisplay">0</strong></span>
+                <span>⭐ Total score: <strong id="totalScoreDisplay">0</strong></span>
+            </div>
+
+            <button id="plantButton" class="primary-button" type="button">
+                🌷 Plant a flower
+            </button>
+        </section>
+
+        <section id="garden" class="garden" aria-label="Your garden">
+            <!-- Flower plots are created by Garden.js -->
+        </section>
+
+        <p id="gardenMessage" class="garden-message" aria-live="polite"></p>
+
+    </main>
+
+
+    <!-- =========================
+         PLANT FLOWER MODAL
+    ========================== -->
+
+    <div id="plantModal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="plantTitle">
+
+        <div class="modal-card">
+
+            <button id="closeModalButton" class="modal-close" type="button" aria-label="Close">
+                ×
+            </button>
+
+            <div class="modal-icon">🌼</div>
+
+            <h2 id="plantTitle">Plant a flower</h2>
+
+            <p class="modal-description">
+                Choose a flower, then choose an empty place in your garden.
+            </p>
+
+            <div id="flowerChoices" class="flower-choices"></div>
+
+            <div class="slot-picker-header">
+                <span>Choose a place</span>
+                <strong id="selectedFlowerLabel">Select a flower first</strong>
+            </div>
+
+            <div id="slotChoices" class="slot-choices"></div>
+
+            <button id="cancelPlantButton" class="secondary-button modal-button" type="button">
+                Cancel
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/Garden.js"></script>
+
+</body>
+</html>

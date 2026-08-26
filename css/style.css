@@ -1,0 +1,1655 @@
+/* =========================================
+   VISUAL SUDOKU
+   Global Styles
+========================================= */
+
+:root {
+
+    --background: #f7f7f9;
+    --surface: #ffffff;
+    --surface-soft: #f1f1f5;
+
+    --text: #22222a;
+    --text-soft: #777783;
+
+    --border: #dedee6;
+    --border-strong: #bdbdc9;
+
+    --accent: #7c6ee6;
+    --accent-soft: #ebe8ff;
+
+    --success: #4caf78;
+    --success-soft: #e9f8ef;
+
+    --error: #e56b6f;
+    --error-soft: #ffe9ea;
+
+    --radius: 16px;
+
+    --board-size: min(
+        90vw,
+        540px
+    );
+
+    --safe-bottom: env(
+        safe-area-inset-bottom,
+        0px
+    );
+}
+
+
+/* =========================================
+   RESET
+========================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+
+html {
+    min-height: 100%;
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    background: var(--background);
+
+    color: var(--text);
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+
+    text-rendering: optimizeLegibility;
+
+    padding:
+        32px
+        20px
+        calc(32px + var(--safe-bottom));
+}
+
+
+button,
+select {
+    font: inherit;
+}
+
+
+button {
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+select {
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================================
+   APP
+========================================= */
+
+.app {
+
+    width: 100%;
+
+    max-width: 900px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================
+   HEADER
+========================================= */
+
+.app-header {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: center;
+
+    gap: 20px;
+
+    margin-bottom: 30px;
+}
+
+
+.brand {
+    min-width: 0;
+}
+
+
+.eyebrow {
+
+    color: var(--accent);
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 8px;
+}
+
+
+h1 {
+
+    font-size: clamp(
+        30px,
+        5vw,
+        48px
+    );
+
+    line-height: 1.05;
+
+    letter-spacing: -1.5px;
+}
+
+
+.subtitle {
+
+    color: var(--text-soft);
+
+    font-size: 14px;
+
+    margin-top: 9px;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.primary-button,
+.secondary-button {
+
+    border-radius: 12px;
+
+    padding: 12px 18px;
+
+    font-weight: 650;
+
+    border: none;
+
+    min-height: 44px;
+
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease,
+        background 0.15s ease;
+
+    touch-action: manipulation;
+}
+
+
+.primary-button {
+
+    background: var(--accent);
+
+    color: white;
+
+    box-shadow:
+        0 5px 15px rgba(
+            124,
+            110,
+            230,
+            0.18
+        );
+}
+
+
+.secondary-button {
+
+    background: var(--surface);
+
+    color: var(--text);
+
+    border: 1px solid var(--border);
+}
+
+
+.primary-button:hover,
+.secondary-button:hover {
+
+    transform: translateY(-2px);
+}
+
+
+.primary-button:active,
+.secondary-button:active {
+
+    transform: scale(0.97);
+}
+
+
+.primary-button:focus-visible,
+.secondary-button:focus-visible,
+select:focus-visible {
+
+    outline: 3px solid var(--accent-soft);
+
+    outline-offset: 2px;
+}
+
+
+/* =========================================
+   CONTROLS
+========================================= */
+
+.controls {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(120px, 1fr)
+        minmax(120px, 1fr)
+        auto;
+
+    align-items: end;
+
+    gap: 12px;
+
+    margin-bottom: 22px;
+}
+
+
+.control-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.control-group label {
+
+    color: var(--text-soft);
+
+    font-size: 11px;
+
+    font-weight: 750;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+}
+
+
+select {
+
+    width: 100%;
+
+    min-height: 44px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    padding: 10px 34px 10px 13px;
+
+    color: var(--text);
+
+    outline: none;
+
+    cursor: pointer;
+}
+
+
+select:focus {
+
+    border-color: var(--accent);
+}
+
+
+.timer-box {
+
+    min-width: 100px;
+
+    min-height: 44px;
+
+    padding: 7px 15px;
+
+    border-radius: 12px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+}
+
+
+.timer-label {
+
+    display: block;
+
+    font-size: 8px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.2px;
+
+    color: var(--text-soft);
+
+    line-height: 1;
+}
+
+
+#timer {
+
+    margin-top: 4px;
+
+    font-size: 17px;
+
+    line-height: 1;
+}
+
+
+/* =========================================
+   GAME
+========================================= */
+
+.game-area {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+
+/* =========================================
+   SUDOKU BOARD
+========================================= */
+
+.sudoku-board {
+
+    width: var(--board-size);
+
+    height: var(--board-size);
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(9, 1fr);
+
+    grid-template-rows:
+        repeat(9, 1fr);
+
+    background: var(--surface);
+
+    border: 3px solid var(--border-strong);
+
+    border-radius: 15px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0, 0, 0, 0.06);
+
+    /*
+        Prevents accidental browser
+        gestures while playing.
+    */
+
+    touch-action: manipulation;
+
+    user-select: none;
+}
+
+
+/* =========================================
+   CELLS
+========================================= */
+
+.cell {
+
+    min-width: 0;
+    min-height: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-right:
+        1px solid var(--border);
+
+    border-bottom:
+        1px solid var(--border);
+
+    font-size:
+        clamp(
+            18px,
+            4.2vw,
+            34px
+        );
+
+    line-height: 1;
+
+    user-select: none;
+
+    transition:
+        background 0.12s ease,
+        transform 0.1s ease;
+
+    overflow: hidden;
+}
+
+
+/*
+    Vertical 3x3 boundaries
+*/
+
+.cell:nth-child(3n) {
+
+    border-right:
+        2px solid
+        var(--border-strong);
+}
+
+
+.cell:nth-child(9n) {
+
+    border-right: none;
+}
+
+
+/*
+    Horizontal 3x3 boundaries
+
+    Rows 3, 6, and 9.
+*/
+
+.cell:nth-child(n + 19):nth-child(-n + 27),
+.cell:nth-child(n + 46):nth-child(-n + 54) {
+
+    border-bottom:
+        2px solid
+        var(--border-strong);
+}
+
+
+.cell:nth-child(n + 73) {
+
+    border-bottom: none;
+}
+
+
+/* =========================================
+   CELL STATES
+========================================= */
+
+.cell.given {
+
+    background: var(--surface-soft);
+
+    font-weight: 650;
+}
+
+
+.cell.selected {
+
+    background: var(--accent-soft);
+}
+
+
+.cell.related {
+
+    background: #f3f1ff;
+}
+
+
+.cell.error {
+
+    background: var(--error-soft);
+
+    color: var(--error);
+
+    animation:
+        shake 0.25s ease;
+}
+
+
+.cell.hint {
+
+    background: var(--success-soft);
+
+    color: var(--success);
+}
+
+
+@keyframes shake {
+
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-3px);
+    }
+
+    75% {
+        transform: translateX(3px);
+    }
+}
+
+
+/* =========================================
+   GAME ACTIONS
+========================================= */
+
+.game-actions {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin-top: 16px;
+}
+
+
+.game-actions button {
+
+    min-width: 105px;
+}
+
+
+/* =========================================
+   MESSAGE
+========================================= */
+
+.message {
+
+    min-height: 24px;
+
+    margin-top: 10px;
+
+    color: var(--text-soft);
+
+    font-size: 13px;
+
+    text-align: center;
+
+    line-height: 1.4;
+}
+
+
+/* =========================================
+   SYMBOL PALETTE
+========================================= */
+
+.palette-section {
+
+    width: 100%;
+
+    margin-top: 28px;
+}
+
+
+.palette-title {
+
+    color: var(--text-soft);
+
+    font-size: 11px;
+
+    font-weight: 750;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.8px;
+
+    text-align: center;
+
+    margin-bottom: 11px;
+}
+
+
+.symbol-palette {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+}
+
+
+.symbol-button {
+
+    width: 48px;
+
+    height: 48px;
+
+    flex: 0 0 48px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 12px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    color: var(--text);
+
+    font-size: 24px;
+
+    line-height: 1;
+
+    transition:
+        transform 0.15s ease,
+        background 0.15s ease,
+        border-color 0.15s ease;
+
+    touch-action: manipulation;
+}
+
+
+.symbol-button:hover {
+
+    transform: translateY(-2px);
+
+    background: var(--accent-soft);
+
+    border-color: var(--accent);
+}
+
+
+.symbol-button:active {
+
+    transform: scale(0.94);
+}
+
+
+.symbol-button.active {
+
+    background: var(--accent-soft);
+
+    border-color: var(--accent);
+}
+
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 100;
+
+    background:
+        rgba(
+            20,
+            20,
+            25,
+            0.45
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    backdrop-filter: blur(4px);
+}
+
+
+.modal.hidden {
+
+    display: none;
+}
+
+
+.modal-content {
+
+    width: min(
+        90vw,
+        400px
+    );
+
+    background: var(--surface);
+
+    border-radius: 22px;
+
+    padding: 34px 25px;
+
+    text-align: center;
+
+    box-shadow:
+        0 30px 80px
+        rgba(0, 0, 0, 0.2);
+
+    animation:
+        modalAppear
+        0.2s ease;
+}
+
+
+@keyframes modalAppear {
+
+    from {
+        opacity: 0;
+        transform: scale(0.94);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+
+.win-icon {
+
+    font-size: 44px;
+
+    margin-bottom: 10px;
+}
+
+
+.modal-content h2 {
+
+    font-size: 27px;
+
+    margin-bottom: 8px;
+}
+
+
+.modal-content p {
+
+    color: var(--text-soft);
+
+    margin-bottom: 8px;
+
+    line-height: 1.5;
+}
+
+
+.modal-button {
+
+    margin-top: 17px;
+}
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 700px) {
+
+    body {
+
+        padding:
+            25px
+            16px
+            calc(25px + var(--safe-bottom));
+    }
+
+
+    .app-header {
+
+        margin-bottom: 24px;
+    }
+
+
+    .controls {
+
+        grid-template-columns:
+            1fr
+            1fr
+            auto;
+    }
+
+
+    .timer-box {
+
+        min-width: 85px;
+    }
+}
+
+
+/* =========================================
+   PHONE
+========================================= */
+
+@media (max-width: 520px) {
+
+    body {
+
+        padding:
+            18px
+            10px
+            calc(24px + var(--safe-bottom));
+    }
+
+
+    .app-header {
+
+        align-items: center;
+
+        gap: 12px;
+
+        margin-bottom: 20px;
+    }
+
+
+    .eyebrow {
+
+        font-size: 9px;
+
+        letter-spacing: 1.5px;
+
+        margin-bottom: 5px;
+    }
+
+
+    h1 {
+
+        font-size: 28px;
+
+        letter-spacing: -1px;
+    }
+
+
+    .subtitle {
+
+        font-size: 12px;
+
+        margin-top: 5px;
+    }
+
+
+    .app-header .primary-button {
+
+        min-width: 44px;
+
+        width: 44px;
+
+        height: 44px;
+
+        padding: 0;
+
+        border-radius: 12px;
+
+        font-size: 0;
+
+        flex: 0 0 44px;
+    }
+
+
+    .app-header .primary-button::after {
+
+        content: "+";
+
+        font-size: 22px;
+
+        line-height: 1;
+    }
+
+
+    .controls {
+
+        grid-template-columns:
+            1fr
+            1fr;
+
+        gap: 8px;
+
+        margin-bottom: 16px;
+    }
+
+
+    .timer-box {
+
+        grid-column: 1 / -1;
+
+        width: 100%;
+
+        min-height: 40px;
+
+        flex-direction: row;
+
+        gap: 8px;
+
+        justify-content: center;
+    }
+
+
+    .timer-label {
+
+        margin-top: 1px;
+    }
+
+
+    #timer {
+
+        margin-top: 0;
+
+        font-size: 16px;
+    }
+
+
+    select {
+
+        min-height: 42px;
+
+        padding:
+            9px
+            28px
+            9px
+            10px;
+
+        font-size: 13px;
+    }
+
+
+    .sudoku-board {
+
+        width: min(
+            96vw,
+            500px
+        );
+
+        height: min(
+            96vw,
+            500px
+        );
+
+        border-radius: 11px;
+
+        border-width: 2px;
+    }
+
+
+    .cell {
+
+        font-size:
+            clamp(
+                17px,
+                6.4vw,
+                29px
+            );
+    }
+
+
+    .game-actions {
+
+        width: 100%;
+
+        gap: 8px;
+
+        margin-top: 12px;
+    }
+
+
+    .game-actions button {
+
+        flex: 1;
+
+        min-width: 0;
+
+        min-height: 43px;
+
+        padding:
+            10px
+            12px;
+
+        font-size: 13px;
+    }
+
+
+    .message {
+
+        font-size: 12px;
+
+        margin-top: 8px;
+    }
+
+
+    .palette-section {
+
+        margin-top: 21px;
+    }
+
+
+    .palette-title {
+
+        font-size: 10px;
+
+        margin-bottom: 9px;
+    }
+
+
+    .symbol-palette {
+
+        gap: 6px;
+    }
+
+
+    .symbol-button {
+
+        width: calc(
+            (100vw - 60px) / 9
+        );
+
+        height: calc(
+            (100vw - 60px) / 9
+        );
+
+        max-width: 45px;
+
+        max-height: 45px;
+
+        min-width: 34px;
+
+        min-height: 34px;
+
+        border-radius: 9px;
+
+        font-size:
+            clamp(
+                17px,
+                5.5vw,
+                23px
+            );
+    }
+
+
+    .modal {
+
+        padding: 14px;
+    }
+
+
+    .modal-content {
+
+        width: 100%;
+
+        max-width: 360px;
+
+        padding:
+            30px
+            20px;
+
+        border-radius: 20px;
+    }
+
+
+    .win-icon {
+
+        font-size: 38px;
+    }
+
+
+    .modal-content h2 {
+
+        font-size: 24px;
+    }
+
+
+    .modal-button {
+
+        width: 100%;
+    }
+}
+
+
+/* =========================================
+   VERY SMALL PHONES
+========================================= */
+
+@media (max-width: 360px) {
+
+    body {
+
+        padding-left: 7px;
+
+        padding-right: 7px;
+    }
+
+
+    h1 {
+
+        font-size: 25px;
+    }
+
+
+    .subtitle {
+
+        display: none;
+    }
+
+
+    .sudoku-board {
+
+        width: 98vw;
+
+        height: 98vw;
+    }
+
+
+    .cell {
+
+        font-size:
+            clamp(
+                15px,
+                6vw,
+                25px
+            );
+    }
+
+
+    .symbol-palette {
+
+        gap: 4px;
+    }
+
+
+    .symbol-button {
+
+        width: calc(
+            (100vw - 42px) / 9
+        );
+
+        height: calc(
+            (100vw - 42px) / 9
+        );
+
+        border-radius: 7px;
+    }
+}
+
+
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        scroll-behavior: auto !important;
+
+        animation-duration:
+            0.01ms !important;
+
+        animation-iteration-count:
+            1 !important;
+
+        transition-duration:
+            0.01ms !important;
+    }
+}
+/* =========================================
+   GAME HEADER EXIT BUTTON
+========================================= */
+
+.exit-button {
+
+    min-height: 44px;
+
+    padding: 10px 15px;
+
+    border-radius: 12px;
+
+    border: 1px solid var(--border);
+
+    background: var(--surface);
+
+    color: var(--text);
+
+    font-weight: 650;
+
+    cursor: pointer;
+
+    transition:
+        0.15s ease;
+}
+
+
+.exit-button:hover {
+
+    transform: translateY(-2px);
+
+    border-color: var(--accent);
+
+}
+
+
+/* =========================================
+   GAME INFORMATION
+========================================= */
+
+.game-info {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: 9px;
+
+    margin-bottom: 18px;
+
+}
+
+
+.game-status {
+
+    min-height: 44px;
+
+    padding:
+        8px
+        14px;
+
+    border-radius: 12px;
+
+    border: 1px solid var(--border);
+
+    background: var(--surface);
+
+    color: var(--text-soft);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 5px;
+
+    font-size: 12px;
+
+}
+
+
+.game-status strong {
+
+    color: var(--text);
+
+}
+
+
+.game-info .timer-box {
+
+    min-height: 44px;
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 520px) {
+
+    .game-info {
+
+        display: grid;
+
+        grid-template-columns:
+            1fr 1fr;
+
+        gap: 7px;
+
+        margin-bottom: 13px;
+
+    }
+
+
+    .game-status {
+
+        justify-content: center;
+
+        padding:
+            8px
+            7px;
+
+        font-size: 11px;
+
+    }
+
+
+    .game-info .timer-box {
+
+        width: 100%;
+
+    }
+
+
+    .game-info .mode-button {
+
+        grid-column: 1 / 3;
+
+        width: 100%;
+
+    }
+
+
+    .exit-button {
+
+        font-size: 12px;
+
+        padding:
+            9px
+            11px;
+
+    }
+
+}
+/* =========================================
+   DARK MODE
+   ========================================= */
+
+   body.dark-mode {
+    background: #111318;
+    color: #f1f3f5;
+}
+
+/* Main containers */
+
+body.dark-mode .game-container,
+body.dark-mode .game-header,
+body.dark-mode .game-info,
+body.dark-mode .controls {
+    color: #f1f3f5;
+}
+
+
+/* Header */
+
+body.dark-mode .game-title,
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3 {
+    color: #f1f3f5;
+}
+
+
+body.dark-mode .subtitle,
+body.dark-mode .difficulty-label {
+    color: #aeb4c0;
+}
+
+
+/* Timer */
+
+body.dark-mode .timer-box {
+    background: #1b1e25;
+    border-color: #343944;
+    color: #ffffff;
+}
+
+
+/* Difficulty box */
+
+body.dark-mode .difficulty-box {
+    background: #1b1e25;
+    border-color: #343944;
+    color: #ffffff;
+}
+
+
+/* Sudoku board */
+
+body.dark-mode #sudokuBoard {
+    background: #1a1d23;
+    border-color: #596171;
+}
+
+
+/* Sudoku cells */
+
+body.dark-mode .cell {
+    background: #1a1d23;
+    color: #f5f7fa;
+    border-color: #343944;
+}
+
+
+/* Given cells */
+
+body.dark-mode .cell.given {
+    background: #242832;
+    color: #ffffff;
+}
+
+
+/* Selected cell */
+
+body.dark-mode .cell.selected {
+    background: #303746;
+}
+
+
+/* Mistake */
+
+body.dark-mode .cell.error {
+    background: #5a252b;
+    color: #ffb3b8;
+}
+
+
+/* Symbol palette */
+
+body.dark-mode .symbol-button {
+    background: #1b1e25;
+    border-color: #343944;
+    color: #ffffff;
+}
+
+
+body.dark-mode .symbol-button:hover {
+    background: #2a2f3a;
+}
+
+
+/* Buttons */
+
+body.dark-mode button {
+    color: #f1f3f5;
+}
+
+
+/* Exit / normal buttons */
+
+body.dark-mode .exit-button,
+body.dark-mode .restart-button,
+body.dark-mode .hint-button {
+    background: #1b1e25;
+    border-color: #343944;
+    color: #ffffff;
+}
+
+
+body.dark-mode .exit-button:hover,
+body.dark-mode .restart-button:hover,
+body.dark-mode .hint-button:hover {
+    background: #292e38;
+}
+
+
+/* Message */
+
+body.dark-mode #message {
+    color: #c7ccd6;
+}
+
+
+/* Win modal */
+
+body.dark-mode .modal {
+    background: #1b1e25;
+    color: #ffffff;
+}
+
+
+body.dark-mode .modal h2 {
+    color: #ffffff;
+}
+
+
+/* Dark mode button */
+
+body.dark-mode #darkMode {
+    background: #1b1e25;
+    border-color: #454b58;
+    color: #ffffff;
+}
+/* =========================================
+   GLOBAL DARK MODE
+   ========================================= */
+
+   body.dark-mode {
+    background-color: #111318 !important;
+    color: #f1f3f5 !important;
+}
+
+body.dark-mode main,
+body.dark-mode section,
+body.dark-mode header,
+body.dark-mode .container {
+    color: #f1f3f5;
+}
+
+
+/* Text */
+
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode label {
+    color: #c8cdd6;
+}
+
+
+/* Sudoku board */
+
+body.dark-mode #sudokuBoard {
+    background-color: #181b21 !important;
+    border-color: #4b5260 !important;
+}
+
+
+/* Every cell */
+
+body.dark-mode #sudokuBoard .cell {
+    background-color: #181b21 !important;
+    color: #ffffff !important;
+    border-color: #363c47 !important;
+}
+
+
+/* Fixed numbers */
+
+body.dark-mode #sudokuBoard .cell.given {
+    background-color: #242933 !important;
+}
+
+
+/* Selected */
+
+body.dark-mode #sudokuBoard .cell.selected {
+    background-color: #343b49 !important;
+}
+
+
+/* Wrong answer */
+
+body.dark-mode #sudokuBoard .cell.error {
+    background-color: #64282e !important;
+    color: #ffb8bd !important;
+}
+
+
+/* Palette */
+
+body.dark-mode #symbolPalette button {
+    background-color: #1b1e25 !important;
+    color: #ffffff !important;
+    border-color: #3c424e !important;
+}
+
+
+/* Timer / information cards */
+
+body.dark-mode .timer,
+body.dark-mode #timer,
+body.dark-mode .info-box,
+body.dark-mode .difficulty {
+    background-color: #1b1e25 !important;
+    color: #ffffff !important;
+    border-color: #3c424e !important;
+}
+
+
+/* Buttons */
+
+body.dark-mode button {
+    background-color: #1b1e25;
+    color: #ffffff;
+    border-color: #3c424e;
+}
+
+
+/* Modal */
+
+body.dark-mode #winModal {
+    background-color: #1b1e25;
+    color: #ffffff;
+}
