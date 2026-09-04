@@ -1,0 +1,689 @@
+:root {
+
+    --background: #f7f7f9;
+    --surface: #ffffff;
+    --surface-soft: #f1f1f5;
+
+    --text: #22222a;
+    --text-soft: #777783;
+
+    --border: #dedee6;
+
+    --accent: #7c6ee6;
+    --accent-soft: #ebe8ff;
+
+    --shadow:
+        0 20px 60px rgba(0, 0, 0, 0.07);
+
+}
+
+
+* {
+
+    box-sizing: border-box;
+
+    margin: 0;
+
+    padding: 0;
+
+}
+
+
+body {
+
+    min-height: 100vh;
+
+    background: var(--background);
+
+    color: var(--text);
+
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    padding: 30px 15px;
+
+}
+
+
+.menu-container {
+
+    width: 100%;
+
+    max-width: 500px;
+
+    text-align: center;
+
+}
+
+
+/* ================================
+   HEADER
+================================ */
+
+.menu-header {
+
+    margin-bottom: 35px;
+
+}
+
+
+.logo {
+
+    width: 68px;
+
+    height: 68px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background: var(--accent);
+
+    color: white;
+
+    font-size: 32px;
+
+    box-shadow:
+        0 12px 30px
+        rgba(
+            124,
+            110,
+            230,
+            0.2
+        );
+
+}
+
+
+.eyebrow {
+
+    color: var(--accent);
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    margin-bottom: 8px;
+
+}
+
+
+h1 {
+
+    font-size:
+        clamp(
+            34px,
+            8vw,
+            50px
+        );
+
+    letter-spacing: -2px;
+
+    line-height: 1;
+
+}
+
+
+.tagline {
+
+    margin-top: 10px;
+
+    color: var(--text-soft);
+
+    font-size: 14px;
+
+}
+
+
+/* ================================
+   PANELS
+================================ */
+
+.menu-panel,
+.info-panel {
+
+    width: 100%;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: 24px;
+
+    padding: 28px;
+
+    box-shadow: var(--shadow);
+
+}
+
+
+.hidden {
+
+    display: none !important;
+
+}
+
+
+/* ================================
+   MENU BUTTONS
+================================ */
+
+.menu-button {
+
+    width: 100%;
+
+    min-height: 56px;
+
+    border-radius: 15px;
+
+    border: 1px solid var(--border);
+
+    background: var(--surface);
+
+    color: var(--text);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    font-size: 15px;
+
+    font-weight: 650;
+
+    margin-bottom: 10px;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.15s ease,
+        background 0.2s ease,
+        border-color 0.2s ease;
+
+}
+
+
+.menu-button:last-child {
+
+    margin-bottom: 0;
+
+}
+
+
+.menu-button:hover {
+
+    transform: translateY(-2px);
+
+    border-color: var(--accent);
+
+}
+
+
+.menu-button.primary {
+
+    background: var(--accent);
+
+    border-color: var(--accent);
+
+    color: white;
+
+}
+
+
+.button-icon {
+
+    width: 25px;
+
+    font-weight: 800;
+
+}
+
+
+.start-button {
+
+    margin-top: 5px;
+
+}
+
+
+/* ================================
+   BACK
+================================ */
+
+.back-button {
+
+    border: none;
+
+    background: transparent;
+
+    color: var(--text-soft);
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    margin-bottom: 22px;
+
+}
+
+
+.back-button:hover {
+
+    color: var(--accent);
+
+}
+
+
+/* ================================
+   SETTINGS
+================================ */
+
+.menu-panel h2,
+.info-panel h2 {
+
+    font-size: 26px;
+
+    letter-spacing: -0.7px;
+
+}
+
+
+.panel-description {
+
+    color: var(--text-soft);
+
+    font-size: 13px;
+
+    margin-top: 7px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.selection-section {
+
+    text-align: left;
+
+    margin-bottom: 22px;
+
+}
+
+
+.selection-section h3 {
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    color: var(--text-soft);
+
+    margin-bottom: 9px;
+
+}
+
+
+.choice-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 8px;
+
+}
+
+
+.choice-button {
+
+    min-height: 78px;
+
+    border-radius: 14px;
+
+    border: 1px solid var(--border);
+
+    background: var(--surface);
+
+    color: var(--text);
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 6px;
+
+    cursor: pointer;
+
+    transition:
+        0.15s ease;
+
+}
+
+
+.choice-button:hover {
+
+    border-color: var(--accent);
+
+}
+
+
+.choice-button.selected {
+
+    border-color: var(--accent);
+
+    background: var(--accent-soft);
+
+    color: var(--accent);
+
+}
+
+
+.choice-icon {
+
+    font-size: 22px;
+
+    line-height: 1;
+
+}
+
+
+.choice-button span:last-child {
+
+    font-size: 12px;
+
+    font-weight: 650;
+
+}
+
+
+/* ================================
+   INSTRUCTIONS
+================================ */
+
+.instructions {
+
+    text-align: left;
+
+    margin-top: 25px;
+
+}
+
+
+.instruction {
+
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 12px;
+
+    margin-bottom: 14px;
+
+}
+
+
+.instruction-number {
+
+    width: 25px;
+
+    height: 25px;
+
+    flex: 0 0 25px;
+
+    border-radius: 50%;
+
+    background: var(--accent-soft);
+
+    color: var(--accent);
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+}
+
+
+.instruction p {
+
+    color: var(--text-soft);
+
+    font-size: 13px;
+
+    line-height: 1.55;
+
+}
+
+
+.tip {
+
+    margin-top: 22px;
+
+    padding: 14px;
+
+    border-radius: 13px;
+
+    background: var(--surface-soft);
+
+    color: var(--text-soft);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+
+    text-align: left;
+
+}
+
+
+/* ================================
+   ABOUT
+================================ */
+
+.about-icon {
+
+    font-size: 42px;
+
+    margin-bottom: 15px;
+
+}
+
+
+.about-text {
+
+    color: var(--text-soft);
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    margin-top: 18px;
+
+}
+
+
+.creator-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+
+    margin-top: 24px;
+
+    padding: 18px;
+
+    border-radius: 15px;
+
+    background: var(--surface-soft);
+
+}
+
+
+.creator-card span {
+
+    color: var(--text-soft);
+
+    font-size: 11px;
+
+}
+
+
+.creator-card strong {
+
+    font-size: 18px;
+
+}
+
+
+.creator-card a {
+
+    color: var(--accent);
+
+    font-size: 13px;
+
+    text-decoration: none;
+
+    margin-top: 3px;
+
+}
+
+
+.creator-card a:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* ================================
+   FOOTER
+================================ */
+
+footer {
+
+    color: var(--text-soft);
+
+    font-size: 11px;
+
+    margin-top: 22px;
+
+}
+
+
+footer span {
+
+    margin: 0 5px;
+
+}
+
+
+/* ================================
+   MOBILE
+================================ */
+
+@media (max-width: 500px) {
+
+    body {
+
+        padding:
+            20px
+            10px;
+
+        align-items: flex-start;
+
+    }
+
+
+    .menu-container {
+
+        margin-top: 25px;
+
+    }
+
+
+    .menu-header {
+
+        margin-bottom: 25px;
+
+    }
+
+
+    .logo {
+
+        width: 58px;
+
+        height: 58px;
+
+        border-radius: 17px;
+
+        font-size: 27px;
+
+    }
+
+
+    h1 {
+
+        font-size: 34px;
+
+    }
+
+
+    .menu-panel,
+    .info-panel {
+
+        padding: 22px 16px;
+
+        border-radius: 20px;
+
+    }
+
+
+    .choice-grid {
+
+        gap: 6px;
+
+    }
+
+
+    .choice-button {
+
+        min-height: 70px;
+
+    }
+
+}

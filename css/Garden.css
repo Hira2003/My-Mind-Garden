@@ -1,0 +1,521 @@
+/* =========================================
+   VISUAL SUDOKU — MY GARDEN
+========================================= */
+
+:root {
+    --background: #f7f7f9;
+    --surface: #ffffff;
+    --surface-soft: #f1f1f5;
+    --text: #22222a;
+    --text-soft: #777783;
+    --border: #dedee6;
+    --accent: #7c6ee6;
+    --accent-soft: #ebe8ff;
+    --success: #4caf78;
+    --radius: 18px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background: var(--background);
+    color: var(--text);
+    font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    padding: 30px 20px 45px;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+button {
+    font: inherit;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.garden-app {
+    width: min(100%, 1050px);
+    margin: 0 auto;
+}
+
+.garden-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 25px;
+    margin-bottom: 25px;
+}
+
+.eyebrow {
+    color: var(--accent);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+}
+
+h1 {
+    font-size: clamp(32px, 6vw, 50px);
+    line-height: 1;
+    letter-spacing: -1.7px;
+}
+
+.subtitle {
+    color: var(--text-soft);
+    font-size: 14px;
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+.garden-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.coin-box {
+    min-height: 44px;
+    padding: 9px 14px;
+    border-radius: 13px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.coin-box strong {
+    color: var(--accent);
+    min-width: 24px;
+}
+
+.primary-button,
+.secondary-button {
+    min-height: 44px;
+    padding: 11px 16px;
+    border-radius: 12px;
+    font-weight: 700;
+    border: 1px solid var(--border);
+    transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.primary-button {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+    box-shadow: 0 7px 18px rgba(124, 110, 230, 0.18);
+}
+
+.secondary-button {
+    background: var(--surface);
+    color: var(--text);
+}
+
+.primary-button:hover,
+.secondary-button:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+}
+
+.primary-button:active,
+.secondary-button:active {
+    transform: scale(0.97);
+}
+
+.garden-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 18px;
+}
+
+.garden-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+}
+
+.garden-stats span {
+    padding: 9px 12px;
+    border-radius: 11px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    color: var(--text-soft);
+    font-size: 12px;
+}
+
+.garden-stats strong {
+    color: var(--text);
+}
+
+.garden {
+    min-height: 480px;
+    padding: 35px 30px 30px;
+    border-radius: 28px;
+    border: 1px solid var(--border);
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.75), transparent 28%),
+        radial-gradient(circle at 80% 75%, rgba(255,255,255,0.65), transparent 30%),
+        #eaf3e5;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.07);
+    display: grid;
+    grid-template-columns: repeat(4, minmax(100px, 1fr));
+    gap: 28px;
+    position: relative;
+    overflow: hidden;
+}
+
+.garden::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image:
+        radial-gradient(circle, rgba(108, 145, 91, 0.12) 1px, transparent 1px);
+    background-size: 23px 23px;
+    pointer-events: none;
+}
+
+.plot {
+    min-height: 150px;
+    position: relative;
+    z-index: 1;
+    border: 0;
+    border-radius: 50%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 7px;
+    color: #65725d;
+}
+
+.plot.empty {
+    border: 2px dashed rgba(101, 114, 93, 0.42);
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+}
+
+.plot.empty:hover {
+    border-color: var(--accent);
+    background: rgba(255,255,255,0.4);
+}
+
+.plot-hole {
+    width: 90px;
+    height: 45px;
+    border-radius: 50%;
+    background: rgba(75, 58, 44, 0.2);
+    box-shadow: inset 0 6px 9px rgba(50, 40, 30, 0.15);
+}
+
+.plot-label {
+    font-size: 11px;
+    font-weight: 700;
+    opacity: 0.8;
+}
+
+.flower {
+    font-size: clamp(48px, 7vw, 76px);
+    line-height: 1;
+    filter: drop-shadow(0 8px 7px rgba(0,0,0,0.12));
+    animation: flowerFloat 2.6s ease-in-out infinite;
+}
+
+.flower.growing {
+    font-size: 45px;
+    animation: growPulse 1.7s ease-in-out infinite;
+}
+
+@keyframes flowerFloat {
+    0%, 100% { transform: translateY(0) rotate(-2deg); }
+    50% { transform: translateY(-5px) rotate(2deg); }
+}
+
+@keyframes growPulse {
+    0%, 100% { transform: scale(0.92); opacity: 0.75; }
+    50% { transform: scale(1); opacity: 1; }
+}
+
+.growth-bar {
+    width: min(110px, 80%);
+    height: 6px;
+    border-radius: 99px;
+    background: rgba(255,255,255,0.75);
+    overflow: hidden;
+}
+
+.growth-progress {
+    height: 100%;
+    background: var(--success);
+    border-radius: inherit;
+    transition: width 0.5s ease;
+}
+
+.growth-time {
+    font-size: 10px;
+    color: #64705e;
+    font-weight: 700;
+}
+
+.garden-message {
+    min-height: 24px;
+    margin-top: 12px;
+    text-align: center;
+    color: var(--text-soft);
+    font-size: 13px;
+}
+
+/* =========================================
+   MODAL
+========================================= */
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 18px;
+    background: rgba(20, 20, 25, 0.48);
+    backdrop-filter: blur(5px);
+}
+
+.modal.hidden {
+    display: none;
+}
+
+.modal-card {
+    width: min(94vw, 650px);
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    background: var(--surface);
+    color: var(--text);
+    border-radius: 24px;
+    padding: 30px 25px 22px;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.2);
+}
+
+.modal-close {
+    position: absolute;
+    right: 15px;
+    top: 12px;
+    width: 36px;
+    height: 36px;
+    border: 0;
+    border-radius: 10px;
+    background: var(--surface-soft);
+    color: var(--text);
+    font-size: 24px;
+}
+
+.modal-icon {
+    font-size: 38px;
+    text-align: center;
+}
+
+.modal-card h2 {
+    text-align: center;
+    margin-top: 5px;
+    font-size: 27px;
+}
+
+.modal-description {
+    text-align: center;
+    color: var(--text-soft);
+    font-size: 13px;
+    margin: 8px auto 20px;
+    line-height: 1.5;
+}
+
+.flower-choices {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 9px;
+}
+
+.flower-choice {
+    min-height: 125px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: var(--surface);
+    color: var(--text);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 5px;
+    transition: 0.15s ease;
+}
+
+.flower-choice:hover {
+    transform: translateY(-2px);
+    border-color: var(--accent);
+}
+
+.flower-choice.selected {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.flower-choice .flower-icon {
+    font-size: 38px;
+}
+
+.flower-choice strong {
+    font-size: 12px;
+}
+
+.flower-choice small {
+    color: var(--text-soft);
+    font-size: 11px;
+}
+
+.slot-picker-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0 9px;
+    color: var(--text-soft);
+    font-size: 12px;
+}
+
+.slot-picker-header strong {
+    color: var(--accent);
+}
+
+.slot-choices {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 7px;
+}
+
+.slot-choice {
+    min-height: 42px;
+    border-radius: 10px;
+    border: 1px dashed var(--border);
+    background: var(--surface);
+    color: var(--text-soft);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.slot-choice:hover:not(:disabled) {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accent-soft);
+}
+
+.slot-choice:disabled {
+    cursor: not-allowed;
+    opacity: 0.45;
+    background: var(--surface-soft);
+}
+
+.modal-button {
+    width: 100%;
+    margin-top: 17px;
+}
+
+/* =========================================
+   DARK MODE
+========================================= */
+
+body.dark-mode {
+    --background: #111318;
+    --surface: #1b1e25;
+    --surface-soft: #242832;
+    --text: #f1f3f5;
+    --text-soft: #aeb4c0;
+    --border: #343944;
+    --accent-soft: #303746;
+}
+
+body.dark-mode .garden {
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.04), transparent 28%),
+        radial-gradient(circle at 80% 75%, rgba(255,255,255,0.04), transparent 30%),
+        #263528;
+}
+
+body.dark-mode .plot-hole {
+    background: rgba(0,0,0,0.25);
+}
+
+body.dark-mode .growth-time,
+body.dark-mode .plot-label {
+    color: #bdc8b7;
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 750px) {
+    .garden {
+        grid-template-columns: repeat(3, minmax(90px, 1fr));
+        padding: 25px 18px;
+        gap: 18px;
+    }
+
+    .garden-header {
+        flex-direction: column;
+    }
+
+    .garden-header-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+}
+
+@media (max-width: 520px) {
+    body {
+        padding: 20px 10px 30px;
+    }
+
+    .garden-header-actions {
+        flex-wrap: wrap;
+    }
+
+    .coin-box {
+        flex: 1;
+        justify-content: center;
+    }
+
+    .garden-toolbar {
+        flex-direction: column-reverse;
+        align-items: stretch;
+    }
+
+    .garden-stats {
+        justify-content: center;
+    }
+
+    .garden {
+        min-height: 520px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 20px 12px;
+    }
+
+    .plot {
+        min-height: 145px;
+    }
+
+    .flower-choices {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .slot-choices {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
